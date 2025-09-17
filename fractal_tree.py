@@ -91,7 +91,7 @@ def draw_fractal_tree(starting_positions:list[tuple[int, int, int]]):
     draw_fractal_tree(next_starting_positions)
 
 # set window width and height
-turtle.title("Fractal Tree")
+turtle.title("Fractal Trees!")
 turtle.setup(WIDTH, HEIGHT)
 
 # turtle setup
