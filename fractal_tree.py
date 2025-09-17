@@ -1,5 +1,7 @@
 import turtle
 from time import sleep as wait
+from random import randint as randi
+from random import random as randf
 
 ### HOW THE SCRIPT WORKS:
 # A fractal tree is a shape you can build by following an algorithm:
@@ -26,6 +28,19 @@ STARTING_WIDTH = 10 # THE WIDTH OF THE FIRST BRANCH (it will fade to 1 generatio
 NUM_GENERATIONS = 10 # THE NUMBER OF BRANCH GENERATIONS (the first branch is always drawn and counts as generation 0)
 ANIMATE = True # animates the tree drawing process if set to True, draws the tree instantly if set to False
 
+RANDOMIZE_PARAMETERS = False
+
+if RANDOMIZE_PARAMETERS:
+    # LEFT_ANGLE = randf() * 360
+    # RIGHT_ANGLE = randf() * 360
+    LEFT_ANGLE = randf() * 60
+    RIGHT_ANGLE = randf() * 60
+    LENGTH_MULTIPLIER = 0.25 + randf()
+    STARTING_LENGTH = randi(100, 200)
+    STARTING_ANGLE = randi(-30, 30)
+    STARTING_WIDTH = 0.1 + (randf() * 15)
+    NUM_GENERATIONS = randi(5, 10)
+    
 # window width and height
 WIDTH, HEIGHT = 800, 800
 
