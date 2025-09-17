@@ -17,17 +17,17 @@ from time import sleep as wait
 #############################################################################################
 
 ### TREE PARAMETERS
-LEFT_ANGLE = 45 # THE BENDING ANGLE IN DEGREES OF EACH LEFT BREANCH RELATIVELY TO THE PREVIOUS ONE
-RIGHT_ANGLE = 45 # THE BENDING ANGLE IN DEGREES OF EACH RIGHT BREANCH RELATIVELY TO THE PREVIOUS ONE
-LENGTH_MULTIPLIER = 0.5 # THE LENGTH RATIO BETWEEN THE NEXT GENERATION OF BRANCHES AND THE CURRENT ONE
-STARTING_LENGTH = 300 # THE LENGTH OF THE FIRST BRANCH
+LEFT_ANGLE = 15 # THE BENDING ANGLE IN DEGREES OF EACH LEFT BREANCH RELATIVELY TO THE PREVIOUS ONE
+RIGHT_ANGLE = 15 # THE BENDING ANGLE IN DEGREES OF EACH RIGHT BREANCH RELATIVELY TO THE PREVIOUS ONE
+LENGTH_MULTIPLIER = 0.8 # THE LENGTH RATIO BETWEEN THE NEXT GENERATION OF BRANCHES AND THE CURRENT ONE
+STARTING_LENGTH = 150 # THE LENGTH OF THE FIRST BRANCH
 STARTING_ANGLE = 0 # THE ANGLE OF THE FIRST BRANCH RELATIVELY TO THE NORTH (positive goes to the left, negative goes to the right)
 STARTING_WIDTH = 10 # THE WIDTH OF THE FIRST BRANCH (it will fade to 1 generation by generation)
 NUM_GENERATIONS = 10 # THE NUMBER OF BRANCH GENERATIONS (the first branch is always drawn and counts as generation 0)
 ANIMATE = True # animates the tree drawing process if set to True, draws the tree instantly if set to False
 
 # window width and height
-WIDTH, HEIGHT = 800, 600
+WIDTH, HEIGHT = 800, 800
 
 def move_turtle(position:tuple[int, int]):
     turtle.penup()
@@ -91,6 +91,7 @@ def draw_fractal_tree(starting_positions:list[tuple[int, int, int]]):
     draw_fractal_tree(next_starting_positions)
 
 # set window width and height
+turtle.title("Fractal Tree")
 turtle.setup(WIDTH, HEIGHT)
 
 # turtle setup
