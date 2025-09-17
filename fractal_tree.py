@@ -17,28 +17,31 @@ from time import sleep as wait
 #############################################################################################
 
 ### TREE PARAMETERS
-LEFT_ANGLE = 24 # THE BENDING ANGLE IN DEGREES OF EACH LEFT BREANCH RELATIVELY TO THE PREVIOUS ONE
-RIGHT_ANGLE = 60 # THE BENDING ANGLE IN DEGREES OF EACH RIGHT BREANCH RELATIVELY TO THE PREVIOUS ONE
-LENGTH_MULTIPLIER = 1 / 2 # THE LENGTH RATIO BETWEEN THE NEXT GENERATION OF BRANCHES AND THE CURRENT ONE
+LEFT_ANGLE = 45 # THE BENDING ANGLE IN DEGREES OF EACH LEFT BREANCH RELATIVELY TO THE PREVIOUS ONE
+RIGHT_ANGLE = 45 # THE BENDING ANGLE IN DEGREES OF EACH RIGHT BREANCH RELATIVELY TO THE PREVIOUS ONE
+LENGTH_MULTIPLIER = 0.8 # THE LENGTH RATIO BETWEEN THE NEXT GENERATION OF BRANCHES AND THE CURRENT ONE
 STARTING_LENGTH = 300 # THE LENGTH OF THE FIRST BRANCH
-STARTING_ANGLE = -10 # THE ANGLE OF THE FIRST BRANCH RELATIVELY TO THE NORTH (positive goes to the left, negative goes to the right)
+STARTING_ANGLE = 0 # THE ANGLE OF THE FIRST BRANCH RELATIVELY TO THE NORTH (positive goes to the left, negative goes to the right)
 STARTING_WIDTH = 10 # THE WIDTH OF THE FIRST BRANCH (it will fade to 1 generation by generation)
-MAX_GENERATIONS = 10 # THE NUMBER OF BRANCH GENERATIONS (the first branch is always drawn and counts as generation 0)
+NUM_GENERATIONS = 10 # THE NUMBER OF BRANCH GENERATIONS (the first branch is always drawn and counts as generation 0)
 ANIMATE = True # animates the tree drawing process if set to True, draws the tree instantly if set to False
+
+# window width and height
+WIDTH, HEIGHT = 800, 600
 
 def move_turtle(position:tuple[int, int]):
     turtle.penup()
     turtle.goto(position)
     turtle.pendown()
 
-if MAX_GENERATIONS > 0:
+if NUM_GENERATIONS > 0:
     # used to make the branches greener as we get to the end of the tree
     current_color = [0.2, 0.1, 0.0]
-    green_delta = (1 - current_color[1]) / MAX_GENERATIONS
+    green_delta = (1 - current_color[1]) / NUM_GENERATIONS
 
     # used to make the branches thiner as we get to the end of the tree
     current_width = STARTING_WIDTH
-    width_delta = (current_width - 0.1) / MAX_GENERATIONS
+    width_delta = (current_width - 0.1) / NUM_GENERATIONS
 
 # recursion for generation
 # for loop iteration is for drawing all the branches in the same generation
@@ -46,8 +49,8 @@ generations = 0
 def draw_fractal_tree(starting_positions:list[tuple[int, int, int]]):
     global generations, current_color, current_width
     
-    # stop if the MAX_GENERATIONS limit is reached (the first branch counts as generation zero)
-    if generations >= MAX_GENERATIONS: return
+    # stop if the NUM_GENERATIONS limit is reached (the first branch counts as generation zero)
+    if generations >= NUM_GENERATIONS: return
     generations += 1
 
     # evaluate what the current generation branch length is (exponential by generations)
@@ -88,7 +91,6 @@ def draw_fractal_tree(starting_positions:list[tuple[int, int, int]]):
     draw_fractal_tree(next_starting_positions)
 
 # set window width and height
-WIDTH, HEIGHT = 800, 600
 turtle.setup(WIDTH, HEIGHT)
 
 # turtle setup
