@@ -1,0 +1,62 @@
+# Fun with Python
+Fun with Python is a series of python scripts where I code things I find funny!
+
+## Fractal Trees
+This script uses the `turtle` module which is a library for easily drawing on screen.\
+It works by having a pointer, the turtle, which you can move around the screen. You can lift and lower the pen to enable the "draw mode" and move the turtle to trace a line.\
+The library also enables you to change the pen stroke width and the both the pen color and the background color.
+
+### How the script works
+To draw the fractal tree the program starts from a specific point and draw a line using polar coordinates (length and heading).\
+It saves the current position of the turtle and stores it in a "node" structure (a tuple of the type (position, heading)).\
+It then calls the `draw_fractal_tree` function which takes in a list of nodes.\
+For each node the turtle will draw the left and right branches, changing its heading every time by a given amount (`left_angle`, `right_angle`).\
+Each time a new branch is drawn, the function also pushes the current node (turtle position and heading) into a list (`next_starting_positions`).\
+Once every node has its pair of left and right branches drawn, the function calls itself (recursion) using as function parameter the `next_starting_positions` list.\
+Thanks to a counter, the function will stop recursively calling itself once the number of generations has reached the desired amount (`NUM_GENERATIONS`).
+
+This results in having a pair of branches popping out from every node, which in turn is part of a pair originated from another branch ending (node) of the previous generation.
+
+The tree is thus built and can be rendered on screen.
+
+### Running the script
+Once you've downloaded `fractal_trees.py` you can run the script with the command: `python fractal_trees.py`.\
+In this case, the program will generate the fractal tree using the parameters specified in code.
+
+You can also use some options:
++ `-r` to randomize the tree parameters
++ `-l <file_name>` to load a the fractal tree parameters at `./trees/<file_name>.json`
++ `-s <file_name>` to save the current fractal tree parameters to `./trees/<file_name>.json`
+
+### The fractal tree parameters
+The fractal tree is defined by various parameters:
++ `left_angle`: the bending angle for left branches
++ `right_angle`: the bending angle for right branches
++ `length_multiplier`: the branch length ratio between the current generation and the previous one
++ `starting_length`: the length of the first branch
++ `starting_angle`: the bending angle for the first branch
++ `starting_width`: the width of the first branch (makes a gradient with `ending_width`)
++ `ending_width`: the width of the last branches (makes a gradient with `starting_width`)
++ `generations_number`: the number of branch layers (a generation can be defined as the set of braches with the same length)
++ `background_color`: the background color
++ `starting_tree_color`: the color of the first branch (makes a gradient with `ending_tree_color`)
++ `ending_tree_color`: the color of the last branches (makes a gradient with `starting_tree_color`)
+
+Remember: all angles are given in degrees, 0 is north and angles are positive when turning counter-clockwise, negative when turning clockwise.
+
+### An example fractal tree
+```json
+{
+    "left_angle": 45,
+    "right_angle": 45,
+    "length_multiplier": 0.5,
+    "starting_length": 300,
+    "starting_angle": 0,
+    "starting_width": 10,
+    "ending_width": 1,
+    "generations_number": 10,
+    "background_color": [0.9, 0.9, 1],
+    "starting_tree_color": [0.2, 0.2, 0.2],
+    "ending_tree_color": [0.5, 0.0, 0.5]
+}
+```
