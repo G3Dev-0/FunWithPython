@@ -116,8 +116,11 @@ if num_args == 3 and sys.argv[1] == "-l":
 
 # save option
 if num_args == 3 and sys.argv[1] == "-s":
+    path = TREES_FOLDER_NAME + "/" + sys.argv[2] + ".json"
+    if is.path.exists(path) and input(f"The file at the given path (\"{path}\") already exists, do you want to replace the existing file? [ENTER/n]: "):
+        exit()
     try:
-        with open(TREES_FOLDER_NAME + "/" + sys.argv[2] + ".txt", "w") as f:
+        with open(path, "w") as f:
             fractal_tree_data = dict()
             fractal_tree_data["left_angle"] = LEFT_ANGLE
             fractal_tree_data["right_angle"] = RIGHT_ANGLE
