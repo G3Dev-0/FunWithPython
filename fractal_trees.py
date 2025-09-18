@@ -117,7 +117,7 @@ if num_args == 3 and sys.argv[1] == "-l":
 # save option
 if num_args == 3 and sys.argv[1] == "-s":
     path = TREES_FOLDER_NAME + "/" + sys.argv[2] + ".json"
-    if is.path.exists(path) and input(f"The file at the given path (\"{path}\") already exists, do you want to replace the existing file? [ENTER/n]: "):
+    if is.path.exists(path) and input(f"The file at the given path (\"{path}\") already exists, do you want to replace the existing file? [ENTER/n]: ").strip() == "n":
         exit()
     try:
         with open(path, "w") as f:
